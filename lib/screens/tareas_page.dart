@@ -31,16 +31,18 @@ class _TareasPageState extends State<TareasPage> {
   Future<void> _cargar() async {
     try {
       final tareas = await _base.listar();
-      if (mounted)
+      if (mounted) {
         setState(() {
           _tareas = tareas;
           _error = null;
         });
+      }
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(
           () => _error = 'No se pudieron cargar las tareas. Revisa el almacenamiento local.',
         );
+      }
     } finally {
       if (mounted) setState(() => _ocupada = false);
     }
@@ -69,9 +71,10 @@ class _TareasPageState extends State<TareasPage> {
   }
 
   void _avisar(String texto) {
-    if (mounted)
+    if (mounted) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(texto)));
+    }
   }
 
   Future<void> _editarTarea(Tarea tarea) async {
@@ -105,8 +108,9 @@ class _TareasPageState extends State<TareasPage> {
         ),
       ),
     );
-    if (nuevo != null && mounted)
+    if (nuevo != null && mounted) {
       await _guardar(() => _base.renombrar(tarea.id, nuevo));
+    }
   }
 
   @override

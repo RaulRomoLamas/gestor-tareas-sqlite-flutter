@@ -4,7 +4,7 @@ import 'package:drift_flutter/drift_flutter.dart';
 import '../models/tarea.dart';
 
 class BaseTareas extends GeneratedDatabase {
-  BaseTareas(QueryExecutor conexion) : super(conexion);
+  BaseTareas(super.conexion);
 
   factory BaseTareas.local() => BaseTareas(
     driftDatabase(
